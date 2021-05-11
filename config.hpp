@@ -8,7 +8,9 @@
  *
  * Delimiter that goes between modules on the top bar
  */
-static const std::string topDelimiter(" ");
+static const std::string topDelimiter("][");
+static const std::string beginDelimiter("[ ");
+static const std::string endDelimiter("]");
 
 /** \brief Bottom delimiter
  *
@@ -71,4 +73,3 @@ static const std::string dateFormat("%a %b %e %H:%M %Z");
 static const std::vector<std::string> fsNames{"/home", "/home/tonyg/extra"};
 
 #endif // config_hpp
-

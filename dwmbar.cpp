@@ -225,7 +225,7 @@ int main(){
 			barText = " " + barText + " " + botTopDelimiter + barTextBottom;
 		}
 		lk.unlock();
-        barText = startDelimiter + barText + endDelimiter;
+        barText = beginDelimiter + barText + endDelimiter;
         std::regex newlines_regex("\n+");
         auto barTextProper = std::regex_replace(barText,newlines_regex," ");
 		printRoot(barText);
