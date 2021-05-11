@@ -8,9 +8,9 @@
  *
  * Delimiter that goes between modules on the top bar
  */
-static const std::string topDelimiter("][");
-static const std::string beginDelimiter("[ ");
-static const std::string endDelimiter("]");
+static const std::string topDelimiter("^v^^c#555555^][^t^ ");
+static const std::string beginDelimiter("^c#888888^^v^^#c#555555^[^t^ ");
+static const std::string endDelimiter("^c#555555^]");
 
 /** \brief Bottom delimiter
  *
@@ -22,7 +22,7 @@ static const std::string bottomDelimiter(" | ");
  *
  * If there is only one bar, the top bar information is used regardless of where you put your bar.
  */
-static const bool twoBars = true;
+static const bool twoBars = false;
 
 /** \brief Delimiter between top and bottom
  *
@@ -41,11 +41,10 @@ static const std::string botTopDelimiter(";");
  *   If the refresh interval is not zero, a real-time signal ca still be used to trigger the module before the interval expires.
  */
 static const std::vector< std::vector<std::string> > topModuleList = {
-	{"~/.scripts/checkMail",    "external", "0",   "8"},
-	{"~/.scripts/pacupdate",    "external", "300", "9"},
-	{"~/.scripts/getMicVolume", "external", "10",  "12"},
-	{"~/.scripts/getVolume",    "external", "10",  "10"},
-	{"~/.scripts/wifiSignal",   "external", "10",  "11"},
+	{"dwmbar-net",       "external",  "8",   "4"},
+	{"dwmbar-tor",       "external",  "9",   "3"},
+	{"dwmbar-mem",       "external",  "3",   "2"},
+	{"dwmbar-date",      "external", "30",   "1"},
 };
 
 /** List of bottom modules
@@ -54,13 +53,7 @@ static const std::vector< std::vector<std::string> > topModuleList = {
  * See the top bar info for instructions.
  */
 static const std::vector< std::vector<std::string> > bottomModuleList = {
-	{"ModuleDate",          "internal", "60",  "1"},
-	{"ModuleBattery",       "internal", "5",   "2"},
-	{"ModuleCPU",           "internal", "2",   "3"},
-	{"~/.scripts/gpuStats", "external", "10",   "4"},
-	{"ModuleRAM",           "internal", "2",   "5"},
-	{"ModuleDisk",          "internal", "10",  "6"},
-	{"~/.scripts/wanIP",    "external", "300", "7"},
+	{"dwmbar-date", "external", "60",  "1"},
 };
 
 /** \brief Date format for the internal date/time module */
