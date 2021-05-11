@@ -227,7 +227,7 @@ int main(){
 		lk.unlock();
         barText = beginDelimiter + barText + endDelimiter;
         std::regex newlines_regex("\n+");
-        auto barTextProper = std::regex_replace(barText,newlines_regex," ");
+        barText = std::regex_replace(barText,newlines_regex," ");
 		printRoot(barText);
 	}
 	for (auto &t : moduleThreads){
