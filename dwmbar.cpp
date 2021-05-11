@@ -31,6 +31,7 @@
 #include <csignal>
 #include <cstddef>
 #include <iostream>
+#include <regex>
 #include <string>
 #include <vector>
 #include <thread>
@@ -224,6 +225,9 @@ int main(){
 			barText = " " + barText + " " + botTopDelimiter + barTextBottom;
 		}
 		lk.unlock();
+        barText = startDelimiter + barText + endDelimiter;
+        std::regex newlines_regex("\n+");
+        auto barTextProper = std::regex_replace(barText,newlines_regex," ");
 		printRoot(barText);
 	}
 	for (auto &t : moduleThreads){
@@ -233,4 +237,3 @@ int main(){
 	}
 	exit(0);
 }
-
