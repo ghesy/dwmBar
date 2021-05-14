@@ -3,8 +3,14 @@
 `dwmbar` is a status bar for [dwm](https://dwm.suckless.org)
 similar to [dwmblocks](https://github.com/torrinfail/dwmblocks).
 
-this build replaces newline characters with space,
-so the spaces between command outputs come naturally.
+It's multithreaded, fast and lightweight, and easy to configure.
 
-checkout [my dotfiles](https://github.com/soystemd/dotfiles)
-for the dwmbar-* scripts.
+I cleaned up this build a lot, completely removed
+the internal modules, and visually restructured the code.
+
+This build also replaces the newline characters
+in your module scripts' outputs with a space,
+so the spaces in your bar output can come naturally.
+
+Checkout [my dotfiles](https://github.com/soystemd/dotfiles)
+for my bar module scripts.
