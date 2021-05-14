@@ -13,4 +13,4 @@ in your module scripts' outputs with a space,
 so the spaces in your bar output can come naturally.
 
 Checkout [my dotfiles](https://github.com/soystemd/dotfiles)
-for my bar module scripts.
+for my [bar module scripts](https://github.com/soystemd/dotfiles/tree/master/scripts/.local/bin/dwmbar).
