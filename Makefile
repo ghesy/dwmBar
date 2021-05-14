@@ -23,4 +23,3 @@ modules.o : modules.cpp modules.hpp
 .PHONY : clean
 clean :
 	-rm -v *.o $(DBOUT)
-
