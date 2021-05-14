@@ -44,11 +44,4 @@ static const std::vector< std::vector<std::string> > topModuleList = {
 /* list of modules for extra (bottom) bar */
 static const std::vector< std::vector<std::string> > bottomModuleList = {};
 
-/* date format for the internal date/time module */
-static const std::string dateFormat("%a %b %e %H:%M %Z");
-
-/* list of file systems to monitor */
-/* file systems to monitor for available space using the built-in disk space module. */
-static const std::vector<std::string> fsNames{"/home", "/mnt/hdd"};
-
 #endif
