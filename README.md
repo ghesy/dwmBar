@@ -1,16 +1,46 @@
 # soystemd's dwmbar
 
-`dwmbar` is a status bar for [dwm](https://dwm.suckless.org)
+dwmbar is a status bar for [dwm](https://dwm.suckless.org)
 similar to [dwmblocks](https://github.com/torrinfail/dwmblocks).
 
-It's multithreaded, fast and lightweight, and easy to configure.
+This is my fork of tonymugen's dwmBar: [tonymugen/dwmBar](https://github.com/tonymugen/dwmBar).
+Head over there for more details.
 
-I cleaned up this build a lot, completely removed
-the internal modules, and visually restructured the code.
+It's multi-threaded, fast and lightweight, and easy to configure.
 
-This build also replaces the newline characters
-in your module scripts' outputs with a space,
-so the spaces in your bar output can come naturally.
+## Changes compared to the original
+
+- Completely removed the internal modules feature
+(you'll only use your own modules anyway)
+- Replace newline characters with space in module outputs, so
+that spaces between elements can come naturally
+- You can add separate delimiters for before, in between and after modules
+- Cleaned up comment blocks and visual clutter
+
+## Modules
 
 Checkout [my dotfiles](https://github.com/soystemd/dotfiles)
 for my [bar module scripts](https://github.com/soystemd/dotfiles/tree/master/scripts/.local/bin/dwmbar).
+
+## Configure
+
+dwmbar is configured by editing the `config.hpp` file.
+
+## Install
+
+```sh
+git clone https://github.com/soystemd/dotfiles
+cd dwmBar
+make
+sudo make install
+```
+
+This will put the `dwmbar` binary in `/usr/local/bin/` and assumes
+gcc is the compiler on the system.
+
+If you have llvm instead, use `make CXX=c++`.
+
+## Dependencies
+
+The project depends on a C++ compiler that understands C++11. It also requires
+`libX11` for printing to the root window.
