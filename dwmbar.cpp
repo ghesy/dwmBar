@@ -2,11 +2,8 @@
  * Copyright (c) 2020 Anthony J. Greenberg
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
- *
  * 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
- *
  * 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- *
  * 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -15,17 +12,13 @@
  * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
  * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGE.
- */
-/// A bar for dwm
-/** \file
- * \author Anthony J. Greenberg
- * \copyright Copyright (c) 2020 Anthony J. Greenberg
- * \version 0.9
  *
- * Displays information on the bar for the Dynamic Window Manager (dwm). External scripts and some internal functions are supported.
- * Can use two bars (bottom and top) if dwm is patched with `dwm-extrabar`.
- *
+ * author Anthony J. Greenberg
+ * copyright Copyright (c) 2020 Anthony J. Greenberg,
+ * (c) 2020-2021 Ehsan Ghorbannezhad (https://github.com/soystemd) <ehsangn@protonmail.ch>
+ * version 0.9
  */
+
 #include <X11/Xlib.h>
 #include <bits/stdint-intn.h>
 #include <csignal>
@@ -40,7 +33,6 @@
 #include <chrono>
 
 #include "modules.hpp"
-// modify this file to configure what modules go where
 #include "config.hpp"
 
 using std::string;
@@ -55,18 +47,17 @@ using std::cerr;
 
 using namespace DWMBspace;
 
-/** \brief Number of possible real-time signals */
+/* number of possible real-time signals */
 static const int sigRTNUM = 30;
-/** \brief Condition variables that will respond to real-time signals */
+/* condition variables that will respond to real-time signals */
 static vector<condition_variable> signalCondition(sigRTNUM);
 
-/** \brief Make bar output
- *
- * Takes individual module outputs and puts them together for printing.
- *
- * \param[in] moduleOutput vector of individual module outputs
- * \param[in] delimiter delimiter character(s) between modules
- * \param[out] barText compiled text to be printed to the bar
+/*
+ * make bar output
+ * takes individual module outputs and puts them together for printing.
+ * moduleOutput: vector of individual module outputs
+ * delimiter: delimiter character(s) between modules
+ * barText: compiled text to be printed to the bar
  */
 void makeBarOutput(const vector<string> &moduleOutput, const string &delimiter, string &barText){
     barText.clear();
@@ -76,12 +67,11 @@ void makeBarOutput(const vector<string> &moduleOutput, const string &delimiter, 
     barText += moduleOutput.back();
 }
 
-/** \brief Render the bar
- *
- * Renders the bar text by printing the provided string to the root window.
+/*
+ * render the bar
+ * renders the bar text by printing the provided string to the root window.
  * This is how dwm handles status bars.
- *
- * \param[in] barOutput text to be displayed
+ * barOutput: text to be displayed
  */
 void printRoot(const string &barOutput){
     Display *d = XOpenDisplay(NULL);
@@ -94,14 +84,14 @@ void printRoot(const string &barOutput){
     XCloseDisplay(d);
 }
 
-/** \brief Process real-time signals
- *
- * Receive and process real-time signals to trigger relevant modules.
- *
- * \param[in] sig signal number (starting at `SIGRTMIN`)
+/*
+ * process real-time signals
+ * receive and process real-time signals to trigger relevant modules.
+ * sig: signal number (starting at `SIGRTMIN`)
  */
 void processSignal(int sig){
-    if ( (sig < SIGRTMIN) || (sig > SIGRTMAX) ) { // do nothing silently if wrong signal received
+    /* do nothing silently if wrong signal received */
+    if ( (sig < SIGRTMIN) || (sig > SIGRTMAX) ) {
         return;
     }
     size_t sigInd = sig - SIGRTMIN;
@@ -109,72 +99,92 @@ void processSignal(int sig){
 }
 
 int main(){
+
     for (int sigID = SIGRTMIN; sigID <= SIGRTMAX; sigID++) {
         signal(sigID, processSignal);
     }
+
     mutex mtx;
-    condition_variable commonCond; // this triggers printing to the bar from individual modules
+    condition_variable commonCond; /* this triggers printing to the bar from individual modules */
     vector<string> topModuleOutputs( topModuleList.size() );
     vector<thread> moduleThreads;
     size_t moduleID = 0;
+
     for (auto &tb : topModuleList){
+
         if (tb.size() != 3) {
             cerr << "ERROR: top bar module description vector must have exactly three elements, yours has " << tb.size() << " (module " << tb[0] << ")\n";
             exit(1);
         }
+
         int32_t interval = stoi(tb[1]);
         if (interval < 0) {
             cerr << "ERROR: refresh interval cannot be negative, yours is " << interval << " (module " << tb[0] << ")\n";
             exit(2);
         }
+
         int32_t rtSig = stoi(tb[2]);
         if (rtSig < 0) {
             cerr << "ERROR: real-time signal cannot be negative, yours is " << rtSig << " (module " << tb[0] << ")\n";
             exit(3);
         }
-            moduleThreads.push_back(thread{ModuleExtern(interval, tb[0], &topModuleOutputs[moduleID], &commonCond, &signalCondition[rtSig])});
+
+        moduleThreads.push_back(thread{ModuleExtern(interval, tb[0], &topModuleOutputs[moduleID], &commonCond, &signalCondition[rtSig])});
         moduleID++;
     }
+
     vector<string> bottomModuleOutputs;
     if (twoBars) {
         bottomModuleOutputs.resize( bottomModuleList.size() );
         moduleID = 0;
+
         for (auto &bb : bottomModuleList){
+
             if (bb.size() != 3) {
                 cerr << "ERROR: top bar module description vector must be have exactly four elements, yours has " << bb.size() << " (module " << bb[0] << ")\n";
                 exit(1);
             }
+
             int32_t interval = stoi(bb[1]);
             if (interval < 0) {
                 cerr << "ERROR: refresh interval cannot be negative, yours is " << interval << " (module " << bb[0] << ")\n";
                 exit(2);
             }
+
             int32_t rtSig = stoi(bb[2]);
             if (rtSig < 0) {
                 cerr << "ERROR: real-time signal cannot be negative, yours is " << rtSig << " (module " << bb[0] << ")\n";
                 exit(3);
             }
+
             moduleThreads.push_back(thread{ModuleExtern(interval, bb[0], &bottomModuleOutputs[moduleID], &commonCond, &signalCondition[rtSig])});
             moduleID++;
         }
     }
+
     string barTextBottom;
     string barText;
+
     while (true) {
+
         unique_lock<mutex> lk(mtx);
         commonCond.wait(lk);
         makeBarOutput(topModuleOutputs, topDelimiter, barText);
+        barText = beginDelimiter + barText + endDelimiter;
+
         if (twoBars) {
             makeBarOutput(bottomModuleOutputs, bottomDelimiter, barTextBottom);
-            // I personally like a little adding around the top bar. Change to suit your taste.
-            barText = " " + barText + " " + botTopDelimiter + barTextBottom;
+            barText = barText + botTopDelimiter + beginDelimiterBottom + barTextBottom + endDelimiterBottom;
         }
         lk.unlock();
-        barText = beginDelimiter + barText + endDelimiter;
+
+        /* replace newline characters with a space */
         std::regex newlines_regex("\n+");
         barText = std::regex_replace(barText,newlines_regex," ");
+
         printRoot(barText);
     }
+
     for (auto &t : moduleThreads){
         if ( t.joinable() ) {
             t.join();
