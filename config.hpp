@@ -44,6 +44,7 @@ static const std::vector< std::vector<std::string> > topModuleList = {
 	{"dwmbar-net",       "external",  "8",   "4"},
 	{"dwmbar-tor",       "external",  "9",   "3"},
 	{"dwmbar-mem",       "external",  "3",   "2"},
+	{"dwmbar-audio",     "external", "30",   "5"},
 	{"dwmbar-date",      "external", "30",   "1"},
 };
 
