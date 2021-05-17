@@ -1,4 +1,3 @@
-
 CXX ?= g++
 INSTALLDIR = /usr/local
 # dwmbar binary

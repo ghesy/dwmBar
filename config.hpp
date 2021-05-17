@@ -6,13 +6,13 @@
 
 /* delimiter between modules */
 /* the stuff enclosed in ^ characters are for my status2d patch */
-static const std::string topDelimiter("^v^^c#555555^][^t^ ");
+static const std::string topDelimiter("^v^^c#444444^][^t^ ");
 
 /* string that comes before the first module */
-static const std::string beginDelimiter("^c#888888^^v^^#c#555555^[^t^ ");
+static const std::string beginDelimiter("^c#888888^^v^^#c#444444^[^t^ ");
 
 /* string that comes after the last module */
-static const std::string endDelimiter("^c#555555^]");
+static const std::string endDelimiter("^c#444444^]");
 
 /* enable if you have the dwm-extrabar patch. */
 static const bool twoBars = false;
