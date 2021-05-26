@@ -38,11 +38,11 @@ static const std::string botTopDelimiter(";");
 
 /*  module-name       refresh-interval   signal-id */
 static const std::vector< std::vector<std::string> > topModuleList = {
-    {"dwmbar-net",    "8",               "4"},
-    {"dwmbar-tor",    "9",               "3"},
-    {"dwmbar-mem",    "3",               "2"},
-    {"dwmbar-audio",  "0",               "5"},
-    {"dwmbar-date",   "30",              "1"},
+    {"dwmbar-net",       "8",   "4"},
+    {"dwmbar-tor",       "9",   "3"},
+    {"dwmbar-mem",       "3",   "2"},
+    {"dwmbar-audio",     "0",   "5"},
+    {"dwmbar-date",     "30",   "1"},
 };
 
 /* list of modules for extra (bottom) bar */
