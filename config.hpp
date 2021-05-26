@@ -40,7 +40,7 @@ static const std::vector< std::vector<std::string> > topModuleList = {
     {"dwmbar-tor",       "9",   "3"},
     {"dwmbar-mem",       "3",   "2"},
     {"dwmbar-audio",     "0",   "5"},
-    {"dwmbar-date",     "30",   "1"},
+    {"dwmbar-date",     "60",   "1"},
 };
 
 /* list of modules for extra (bottom) bar */
