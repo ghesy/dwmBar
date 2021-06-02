@@ -8,19 +8,20 @@ Head over there for more details.
 
 It's multi-threaded, fast and lightweight, and easy to configure.
 
-## Changes compared to the original
+![screenshot](shot.png)
+
+## Changes compared to the [original](https://github.com/tonymugen/dwmBar)
 
 - Completely removed the internal modules feature
 (you'll only use your own modules anyway)
-- Replace newline characters with space in module outputs, so
+- Replace newline characters in modules' output with a space, so
 that spaces between elements can come naturally
 - You can add separate delimiters for before, in between and after modules
-- Cleaned up comment blocks and visual clutter
+- Cleaned up the code visually
 
 ## Modules
 
-Checkout [my dotfiles](https://github.com/soystemd/dotfiles)
-for my [bar module scripts](https://github.com/soystemd/dotfiles/tree/master/scripts/.local/bin/dwmbar).
+[here are my scripts.](https://github.com/soystemd/dotfiles/tree/master/scripts/.local/bin/dwmbar)
 
 ## Configure
 
