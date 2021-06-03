@@ -1,6 +1,6 @@
-# soystemd's dwmbar
+# dwmBar
 
-dwmbar is a status bar for [dwm](https://dwm.suckless.org)
+dwmBar is a status bar for [dwm](https://dwm.suckless.org)
 similar to [dwmblocks](https://github.com/torrinfail/dwmblocks).
 
 This is my fork of tonymugen's dwmBar: [tonymugen/dwmBar](https://github.com/tonymugen/dwmBar).
@@ -21,11 +21,11 @@ that spaces between elements can come naturally
 
 ## Modules
 
-[here are my scripts.](https://github.com/soystemd/dotfiles/tree/master/scripts/.local/bin/dwmbar)
+[Here are my scripts.](https://github.com/soystemd/dotfiles/tree/master/scripts/.local/bin/dwmbar)
 
 ## Configure
 
-dwmbar is configured by editing the `config.hpp` file.
+dwmBar is configured by editing the `config.hpp` file.
 
 ## Install
 
