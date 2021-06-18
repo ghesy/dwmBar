@@ -5,14 +5,27 @@
 #include <vector>
 
 /* delimiter between modules */
+static const std::string delim("][");
+static const std::string delimBegin("[");
+static const std::string delimEnd("]");
+
+/* colors */
+#if defined __has_include && __has_include ("/tmp/wal-dwmbar.h")
+#include "/tmp/wal-dwmbar.h"
+#endif
+#ifndef PYWAL
+static const std::string dim("#444444");
+static const std::string bright("#888888");
+#endif
+
 /* the stuff enclosed in ^ characters are for my status2d patch */
-static const std::string topDelimiter("^v^^c#444444^][^t^ ");
+static const std::string topDelimiter = "^v^^c" + dim + "^" + delim + "^t^ ";
 
 /* string that comes before the first module */
-static const std::string beginDelimiter("^c#888888^^v^^#c#444444^[^t^ ");
+static const std::string beginDelimiter = "^c" + bright + "^^v^^c" + dim + "^" + delimBegin + "^t^ ";
 
 /* string that comes after the last module */
-static const std::string endDelimiter("^c#444444^]");
+static const std::string endDelimiter = "^c" + dim + "^" + delimEnd;
 
 /* enable if you have the dwm-extrabar patch. */
 static const bool twoBars = false;
