@@ -62,9 +62,10 @@ static vector<condition_variable> signalCondition(sigRTNUM);
  * delimiter: delimiter character(s) between modules
  * barText: compiled text to be printed to the bar
  */
-void makeBarOutput(const vector<string> &moduleOutput, const string &delimiter, string &barText){
+void makeBarOutput(const vector<string> &moduleOutput, const string &delimiter, string &barText)
+{
     barText.clear();
-    for (auto moIt = moduleOutput.begin(); moIt != (moduleOutput.end() - 1); ++moIt){
+    for (auto moIt = moduleOutput.begin(); moIt != (moduleOutput.end() - 1); ++moIt) {
         barText += (*moIt) + delimiter;
     }
     barText += moduleOutput.back();
@@ -76,7 +77,8 @@ void makeBarOutput(const vector<string> &moduleOutput, const string &delimiter, 
  * This is how dwm handles status bars.
  * barOutput: text to be displayed
  */
-void printRoot(const string &barOutput){
+void printRoot(const string &barOutput)
+{
     Display *d = XOpenDisplay(NULL);
     if (d == nullptr) {
         return;         // fail silently
@@ -92,7 +94,8 @@ void printRoot(const string &barOutput){
  * receive and process real-time signals to trigger relevant modules.
  * sig: signal number (starting at `SIGRTMIN`)
  */
-void processSignal(int sig){
+void processSignal(int sig)
+{
     /* do nothing silently if wrong signal received */
     if ( (sig < SIGRTMIN) || (sig > SIGRTMAX) ) {
         return;
@@ -101,8 +104,8 @@ void processSignal(int sig){
     signalCondition[sigInd].notify_one();
 }
 
-int main(){
-
+int main()
+{
     for (int sigID = SIGRTMIN; sigID <= SIGRTMAX; sigID++) {
         signal(sigID, processSignal);
     }
@@ -128,7 +131,7 @@ int main(){
     vector<thread> moduleThreads;
     size_t moduleID = 0;
 
-    for (auto &tb : topModuleList){
+    for (auto &tb : topModuleList) {
 
         if (tb.size() != 3) {
             cerr << "ERROR: top bar module description vector must have exactly three elements, yours has " << tb.size() << " (module " << tb[0] << ")\n";
@@ -156,7 +159,7 @@ int main(){
         bottomModuleOutputs.resize( bottomModuleList.size() );
         moduleID = 0;
 
-        for (auto &bb : bottomModuleList){
+        for (auto &bb : bottomModuleList) {
 
             if (bb.size() != 3) {
                 cerr << "ERROR: top bar module description vector must be have exactly four elements, yours has " << bb.size() << " (module " << bb[0] << ")\n";
@@ -203,7 +206,7 @@ int main(){
         printRoot(barText);
     }
 
-    for (auto &t : moduleThreads){
+    for (auto &t : moduleThreads) {
         if ( t.joinable() ) {
             t.join();
         }

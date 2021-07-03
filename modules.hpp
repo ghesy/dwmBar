@@ -41,7 +41,7 @@ namespace DWMBspace {
     class Module {
     public:
         /* destructor */
-        virtual ~Module(){ outString_ = nullptr; outputCondition_ = nullptr; };
+        virtual ~Module() { outString_ = nullptr; outputCondition_ = nullptr; };
 
         /* run the module */
         /* runs the module, refreshing at the specified interval or after receiving a refresh signal. */
