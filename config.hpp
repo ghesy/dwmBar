@@ -19,19 +19,6 @@ XCOLORS
     XLOAD( bright, "*.color6" );
 XCOLORS_END
 
-/* enable if you have the dwm-extrabar patch. */
-static const bool twoBars = false;
-
-/* delimiter between modules on your extra (bottom) bar */
-static const std::string bottomDelimiter(" | ");
-
-/* strings that come before and after the extrabar */
-static const std::string beginDelimiterBottom(" ");
-static const std::string endDelimiterBottom(" ");
-
-/* the delimiter used by the dwm-extrabar patch. */
-static const std::string botTopDelimiter(";");
-
 /*
   list of modules
 . module-name: is name or path to a script or program.
@@ -47,6 +34,12 @@ static const std::vector< std::vector<std::string> > topModuleList = {
     {"dwmbar-audio",     "0",   "5"},
     {"dwmbar-date",     "60",   "1"},
 };
+
+/* enable if you have the dwm-extrabar patch. */
+static const bool twoBars = false;
+
+/* the delimiter used by the dwm-extrabar patch. */
+static const std::string botTopDelimiter(";");
 
 /* list of modules for extra (bottom) bar */
 static const std::vector< std::vector<std::string> > bottomModuleList = {};

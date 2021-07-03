@@ -114,13 +114,13 @@ int main(){
     static const std::string col_bright(bright);
 
     /* the stuff enclosed in ^ characters are for the status2d patch */
-    static const std::string topDelimiter = "^v^^c" + col_dim + "^" + delim + "^t^ ";
+    static const std::string delimFull = "^v^^c" + col_dim + "^" + delim + "^t^ ";
 
     /* string that comes before the first module */
-    static const std::string beginDelimiter = "^c" + col_bright + "^^v^^c" + col_dim + "^" + delimBegin + "^t^ ";
+    static const std::string delimBeginFull = "^c" + col_bright + "^^v^^c" + col_dim + "^" + delimBegin + "^t^ ";
 
     /* string that comes after the last module */
-    static const std::string endDelimiter = "^c" + col_dim + "^" + delimEnd;
+    static const std::string delimEndFull = "^c" + col_dim + "^" + delimEnd;
 
     mutex mtx;
     condition_variable commonCond; /* this triggers printing to the bar from individual modules */
@@ -187,12 +187,12 @@ int main(){
 
         unique_lock<mutex> lk(mtx);
         commonCond.wait(lk);
-        makeBarOutput(topModuleOutputs, topDelimiter, barText);
-        barText = beginDelimiter + barText + endDelimiter;
+        makeBarOutput(topModuleOutputs, delimFull, barText);
+        barText = delimBeginFull + barText + delimEndFull;
 
         if (twoBars) {
-            makeBarOutput(bottomModuleOutputs, bottomDelimiter, barTextBottom);
-            barText = barText + botTopDelimiter + beginDelimiterBottom + barTextBottom + endDelimiterBottom;
+            makeBarOutput(bottomModuleOutputs, delimFull, barTextBottom);
+            barText = barText + botTopDelimiter + delimBeginFull + barTextBottom + delimEndFull;
         }
         lk.unlock();
 
