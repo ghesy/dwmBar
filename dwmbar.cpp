@@ -20,6 +20,7 @@
  */
 
 #include <X11/Xlib.h>
+#include <X11/Xresource.h>
 #include <bits/stdint-intn.h>
 #include <csignal>
 #include <cstddef>
@@ -32,8 +33,10 @@
 #include <condition_variable>
 #include <chrono>
 
+#include "xrdb.h"
 #include "modules.hpp"
 #include "config.hpp"
+#include "xrdb.c"
 
 using std::string;
 using std::stoi;
@@ -103,6 +106,21 @@ int main(){
     for (int sigID = SIGRTMIN; sigID <= SIGRTMAX; sigID++) {
         signal(sigID, processSignal);
     }
+
+    XrmInitialize();
+    xrdb_read();
+
+    static const std::string col_dim(dim);
+    static const std::string col_bright(bright);
+
+    /* the stuff enclosed in ^ characters are for the status2d patch */
+    static const std::string topDelimiter = "^v^^c" + col_dim + "^" + delim + "^t^ ";
+
+    /* string that comes before the first module */
+    static const std::string beginDelimiter = "^c" + col_bright + "^^v^^c" + col_dim + "^" + delimBegin + "^t^ ";
+
+    /* string that comes after the last module */
+    static const std::string endDelimiter = "^c" + col_dim + "^" + delimEnd;
 
     mutex mtx;
     condition_variable commonCond; /* this triggers printing to the bar from individual modules */

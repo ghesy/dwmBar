@@ -10,22 +10,14 @@ static const std::string delimBegin("[");
 static const std::string delimEnd("]");
 
 /* colors */
-#if defined __has_include && __has_include ("/tmp/wal-dwmbar.h")
-#include "/tmp/wal-dwmbar.h"
-#endif
-#ifndef PYWAL
-static const std::string dim("#444444");
-static const std::string bright("#888888");
-#endif
+static char dim[] = "#444444";
+static char bright[] = "#888888";
 
-/* the stuff enclosed in ^ characters are for my status2d patch */
-static const std::string topDelimiter = "^v^^c" + dim + "^" + delim + "^t^ ";
-
-/* string that comes before the first module */
-static const std::string beginDelimiter = "^c" + bright + "^^v^^c" + dim + "^" + delimBegin + "^t^ ";
-
-/* string that comes after the last module */
-static const std::string endDelimiter = "^c" + dim + "^" + delimEnd;
+/* specify colors to read from xresources */
+XCOLORS
+    XLOAD( dim,    "*.color2" );
+    XLOAD( bright, "*.color6" );
+XCOLORS_END
 
 /* enable if you have the dwm-extrabar patch. */
 static const bool twoBars = false;
