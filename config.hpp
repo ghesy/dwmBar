@@ -35,7 +35,7 @@ static const std::vector< std::vector<std::string> > topModuleList = {
     #ifdef LAPTOP
     {"dwmbar-battery",  "60",  "15"},
     #endif
-    {"dwmbar-date",     "60",   "1"},
+    {"dwmbar-date",     "30",   "1"},
 };
 
 /* enable if you have the dwm-extrabar patch. */
