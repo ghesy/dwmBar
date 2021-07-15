@@ -6,11 +6,11 @@ endif
 
 dwmbar : dwmbar.cpp modules.cpp
 
-install : $(DBOUT)
-	@cp -v $(DBOUT) $(DESTDIR)/bin
-	@chmod -v 755 $(DESTDIR)/bin/dwmbar
+install : dwmbar
+	@cp -fv dwmbar $(DESTDIR)/bin
+	@chmod 755 $(DESTDIR)/bin/dwmbar
 
 clean :
 	@rm -fv *.o dwmbar
 
-.PHONY : all clean install
+.PHONY : install clean
