@@ -32,9 +32,9 @@ static const std::vector< std::vector<std::string> > topModuleList = {
     {"dwmbar-tor",       "9",   "3"},
     {"dwmbar-mem",       "3",   "2"},
     {"dwmbar-audio",     "0",   "5"},
-    #ifdef LAPTOP
+#ifdef LAPTOP
     {"dwmbar-battery",  "60",  "15"},
-    #endif
+#endif
     {"dwmbar-date",     "30",   "1"},
 };
 
