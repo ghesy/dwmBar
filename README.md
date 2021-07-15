@@ -12,6 +12,7 @@ It's multi-threaded, fast and lightweight, and easy to configure.
 
 ## Changes compared to the [original](https://github.com/tonymugen/dwmBar)
 
+- Load colors from Xresources
 - Completely removed the internal modules feature
 (you'll only use your own modules anyway)
 - Replace newline characters in modules' output with a space, so
