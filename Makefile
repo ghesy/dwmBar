@@ -1,5 +1,8 @@
 DESTDIR = /usr/local
 CXXFLAGS = -O2 -march=native -std=c++11 -pthread -lX11
+ifdef LAPTOP
+CXXFLAGS += -DLAPTOP
+endif
 
 dwmbar : dwmbar.cpp modules.cpp
 
