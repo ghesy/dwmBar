@@ -1,5 +1,6 @@
 void xrdb_read()
 {
+    XrmInitialize();
     Display *display;
     char * resm;
     XrmDatabase xrdb;

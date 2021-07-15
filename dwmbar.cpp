@@ -20,7 +20,6 @@
  */
 
 #include <X11/Xlib.h>
-#include <X11/Xresource.h>
 #include <bits/stdint-intn.h>
 #include <csignal>
 #include <cstddef>
@@ -110,7 +109,6 @@ int main()
         signal(sigID, processSignal);
     }
 
-    XrmInitialize();
     xrdb_read();
 
     static const std::string col_dim(dim);
