@@ -9,16 +9,6 @@ static const std::string delim("][");
 static const std::string delimBegin("[");
 static const std::string delimEnd("]");
 
-/* colors */
-static char dim[] = "#444444";
-static char bright[] = "#888888";
-
-/* specify colors to read from xresources */
-XCOLORS
-    XLOAD( dim,    "*.color2" );
-    XLOAD( bright, "*.color6" );
-XCOLORS_END
-
 /*
   list of modules
 . module-name: is name or path to a script or program.

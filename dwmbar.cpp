@@ -32,10 +32,8 @@
 #include <condition_variable>
 #include <chrono>
 
-#include "xrdb.h"
 #include "modules.hpp"
 #include "config.hpp"
-#include "xrdb.c"
 
 using std::string;
 using std::stoi;
@@ -109,19 +107,14 @@ int main()
         signal(sigID, processSignal);
     }
 
-    xrdb_read();
-
-    static const std::string col_dim(dim);
-    static const std::string col_bright(bright);
-
     /* the stuff enclosed in ^ characters are for the status2d patch */
-    static const std::string delimFull = "^v^^c" + col_dim + "^" + delim + "^t^ ";
+    static const std::string delimFull = "^v^^C0^" + delim + "^t^ ";
 
     /* string that comes before the first module */
-    static const std::string delimBeginFull = "^c" + col_bright + "^^v^^c" + col_dim + "^" + delimBegin + "^t^ ";
+    static const std::string delimBeginFull = "^C1^^v^^C0^" + delimBegin + "^t^ ";
 
     /* string that comes after the last module */
-    static const std::string delimEndFull = "^c" + col_dim + "^" + delimEnd;
+    static const std::string delimEndFull = "^C0^" + delimEnd;
 
     mutex mtx;
     condition_variable commonCond; /* this triggers printing to the bar from individual modules */
