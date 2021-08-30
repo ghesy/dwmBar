@@ -18,9 +18,9 @@ static const std::string delimEnd("]");
 
 /* module-name, refresh-interval, signal-id */
 static const std::vector< std::vector<std::string> > topModuleList = {
-    {"dwmbar-net",      "23",   "4"},
-    {"dwmbar-tor",      "11",   "3"},
-    {"dwmbar-mem",       "6",   "2"},
+    {"dwmbar-net",      "30",   "4"},
+    {"dwmbar-tor",      "15",   "3"},
+    {"dwmbar-mem",      "10",   "2"},
     {"dwmbar-audio",     "0",   "5"},
 #ifdef LAPTOP
     {"dwmbar-battery",  "60",  "15"},
