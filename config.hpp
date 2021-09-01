@@ -20,7 +20,6 @@ static const std::string delimEnd("]");
 static const std::vector< std::vector<std::string> > topModuleList = {
     {"dwmbar-net",      "23",   "4"},
     {"dwmbar-tor",      "11",   "3"},
-    {"dwmbar-mem",       "6",   "2"},
     {"dwmbar-audio",     "0",   "5"},
 #ifdef LAPTOP
     {"dwmbar-battery",  "60",  "15"},
