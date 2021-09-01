@@ -1,7 +1,7 @@
 DESTDIR = /usr/local
 CXXFLAGS = -O2 -march=native -std=c++11 -pthread -lX11
-ifdef CHASSIS
-CXXFLAGS += -DCHASSIS=$(CHASSIS)
+ifeq ($(CHASSIS),laptop)
+	CXXFLAGS += -DLAPTOP
 endif
 
 dwmbar : dwmbar.cpp modules.cpp

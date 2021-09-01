@@ -21,7 +21,7 @@ static const std::vector< std::vector<std::string> > topModuleList = {
     {"dwmbar-net",      "23",   "4"},
     {"dwmbar-tor",      "11",   "3"},
     {"dwmbar-audio",     "0",   "5"},
-#if CHASSIS == laptop
+#ifdef LAPTOP
     {"dwmbar-battery",  "60",  "15"},
 #endif
     {"dwmbar-date",     "30",   "1"},
