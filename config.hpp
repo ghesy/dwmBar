@@ -5,9 +5,9 @@
 #include <vector>
 
 /* delimiter between modules */
-static const std::string delim("][");
-static const std::string delimBegin("[");
-static const std::string delimEnd("]");
+static const std::string delim("|");
+static const std::string delimBegin("");
+static const std::string delimEnd("");
 
 /*
   list of modules
@@ -18,12 +18,12 @@ static const std::string delimEnd("]");
 
 /* module-name, refresh-interval, signal-id */
 static const std::vector< std::vector<std::string> > topModuleList = {
-    {"dwmbar-net",      "60",   "3"},
-    {"dwmbar-audio",     "0",   "2"},
+    {"dwmbar-net", "60", "3"},
+    {"dwmbar-audio", "0", "2"},
 #ifdef LAPTOP
-    {"dwmbar-battery",  "60",  "15"},
+    {"dwmbar-battery", "60", "15"},
 #endif
-    {"dwmbar-date",     "30",   "1"},
+    {"date '+%a %F %H:%M'", "30", "1"},
 };
 
 /* enable if you have the dwm-extrabar patch. */
